@@ -1,3 +1,19 @@
 extends layout
 block content
-    p(class='md-body-2') Currency
+    p(class='md-title') Currency
+    div(flex='40')
+      div(ng-controller='CurrencyCtrl' ng-cloak='' )
+        div
+          md-button(class='md-raised md-warn' ng-click='deleteCurrencies()') Delete Selected
+        md-content
+          md-list
+            md-subheader(class='md-no-sticky') There are {{currencies.length}} currencies registered in the app.
+            md-list-item(class='md-2-line' ng-repeat='item in currencies')
+              img(src='/images/{{item.name}}.png' class='md-avatar' alt='{{item.name}}')
+              div(class='md-list-item-text' layout='column')
+                h3 {{item.name}}
+                p Exchange Rate (to HUF): {{item.conversionRate}}
+              md-checkbox(class='md-secondary' ng-model='item.isSelected')
+
+block append angularscripts
+  script(src='javascripts/CurrencyCtrl.js')

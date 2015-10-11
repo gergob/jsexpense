@@ -1,14 +1,14 @@
 doctype html
-html
+html(ng-app='jsexpense')
   head
     title= title
-    link(rel='stylesheet', href='https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css')
+    link(rel='stylesheet', href='https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css')
     link(rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons')
     link(rel='stylesheet', href='stylesheets/style.css')
   body
 
     block header
-      div(ng-controller='AppCtrl' ng-cloak='' ng-app='jsexpense')
+      div(ng-controller='AppCtrl' ng-cloak='')
         md-content
           md-toolbar
             div(class='md-toolbar-tools')
@@ -37,4 +37,7 @@ html
       script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js')
       script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js')
       script(src='https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.js')
+
+    block angularscripts
+      script(src='javascripts/jsExpense.js')
       script(src='javascripts/AppCtrl.js')
