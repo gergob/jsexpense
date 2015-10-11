@@ -30,10 +30,11 @@ function addCurrency(name, conversionRate, forDate) {
     var deferred = q.defer();
 
     var currencyInsert = 'INSERT INTO currency(name, conversionRate, forDate) VALUES (?,?,?)';
-
+    console.log('Query template' + currencyInsert);
     connectionManager.getConnection()
         .then(function (connection) {
-            var query = connection.prepareQuery(currencyInsert, [name, conversionRate, forDate]);
+            var query = connectionManager.prepareQuery(currencyInsert, [name, conversionRate, forDate]);
+            console.log('Query to execute:' + query);
             connection.query(query, function (error, result) {
                 if (error) {
                     console.error(error);
@@ -50,6 +51,35 @@ function addCurrency(name, conversionRate, forDate) {
     return deferred.promise;
 }
 
+function deleteCurrency(name) {
+    var deferred = q.defer();
+
+    var currencyDelete = 'DELETE FROM currency where name = ?';
+
+    connectionManager.getConnection()
+        .then(function (connection) {
+            var query = connectionManager.prepareQuery(currencyDelete, [name]);
+            console.log('Delete query:' + query);
+            connection.query(query, function (error, result) {
+                if (error) {
+                    console.error(error);
+                    deferred.reject(error);
+                }
+                deferred.resolve({affectedRows: result.affectedRows});
+            });
+        })
+        .fail(function (err) {
+            console.error(JSON.stringify(err));
+            deferred.reject(err);
+        });
+
+    return deferred.promise;
+
+
+}
+
 module.exports = {
-    getCurrencies: getCurrencies
+    getCurrencies: getCurrencies,
+    addCurrency: addCurrency,
+    deleteCurrency: deleteCurrency
 };
