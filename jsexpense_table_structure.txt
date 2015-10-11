@@ -1,0 +1,23 @@
+CURRENCY
+--------------
+name
+conversionRate
+date
+
+
+EXPENSE
+--------------
+id
+name
+amount
+units (default 1)
+unitPrice
+currency
+
+
+MEMBERS
+--------------
+id
+name
+role
+
