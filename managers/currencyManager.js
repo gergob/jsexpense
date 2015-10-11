@@ -26,6 +26,30 @@ function getCurrencies() {
     return deferred.promise;
 }
 
+function addCurrency(name, conversionRate, forDate) {
+    var deferred = q.defer();
+
+    var currencyInsert = 'INSERT INTO currency(name, conversionRate, forDate) VALUES (?,?,?)';
+
+    connectionManager.getConnection()
+        .then(function (connection) {
+            var query = connection.prepareQuery(currencyInsert, [name, conversionRate, forDate]);
+            connection.query(query, function (error, result) {
+                if (error) {
+                    console.error(error);
+                    deferred.reject(error);
+                }
+                deferred.resolve(result.insertId);
+            });
+        })
+        .fail(function (err) {
+            console.error(JSON.stringify(err));
+            deferred.reject(err);
+        });
+
+    return deferred.promise;
+}
+
 module.exports = {
     getCurrencies: getCurrencies
 };

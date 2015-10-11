@@ -2,6 +2,13 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css')
+    link(rel='stylesheet', href='stylesheets/style.css')
   body
-    block content
+    div(layout='row' layout-margin)
+      div(flex='100')
+        block header
+    div(layout='row' layout-margin)
+      div(flex='100')
+        block content
+    block script
