@@ -4,19 +4,33 @@
 
 var myApp = angular.module('jsexpense');
 
-myApp.controller('CurrencyCtrl', ['$scope', '$http', function($scope, $http) {
-        $scope.currencies = [];
+myApp.controller('CurrencyCtrl', ['$scope', '$http', function ($scope, $http) {
+    $scope.currencies = [];
 
-        $http.get('/api/currencies').then(function(resp){
-            resp.data.forEach(function(item){
-                item.isSelected = false;
-                $scope.currencies.push(item);
-            });
+    $http.get('/api/currencies').then(function (resp) {
+        resp.data.forEach(function (item) {
+            item.isSelected = false;
+            $scope.currencies.push(item);
+        });
+    });
+
+    $scope.deleteCurrencies = function () {
+        var remaining = [];
+        $scope.currencies.forEach(function (item) {
+            if (item.isSelected) {
+                $http.delete('/api/currencies/' + item.name).then(function (resp) {
+                    console.log('Deleting currency ' + item.name + '. NrOfDeleted Items is ' + resp.affectedRows);
+                }, function (error) {
+                    console.error(error);
+                })
+            }
+            else {
+                remaining.push(item);
+            }
         });
 
-        $scope.deleteCurrencies = function(){
-            alert('delete items');
-        }
+        $scope.currencies = remaining;
+    };
 
 
-    }]);
+}]);

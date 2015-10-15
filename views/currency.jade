@@ -1,7 +1,7 @@
 extends layout
 block content
     p(class='md-title') Currency
-    div(flex='40')
+    div(style='width:40%')
       div(ng-controller='CurrencyCtrl' ng-cloak='' )
         div
           md-button(class='md-raised md-warn' ng-click='deleteCurrencies()') Delete Selected

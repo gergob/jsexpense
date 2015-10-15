@@ -27,6 +27,9 @@ html(ng-app='jsexpense')
               md-button(class='md-icon-button' aria-label='Expenses' href='/expense' ng-disabled='#{disableExpense}')
                 md-icon
                   i(class='material-icons') credit_card
+              md-button(class='md-icon-button' aria-label='Add' href='/add' ng-disabled='#{disableAdd}')
+                md-icon
+                  i(class='material-icons') add
 
     div(layout='row' layout-margin)
       div(flex='100')

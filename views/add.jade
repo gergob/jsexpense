@@ -1,0 +1,25 @@
+extends layout
+block content
+    p(class='md-title') Add
+    div(flex='flex=40')
+        div(ng-controller='AddCtrl' ng-cloak='' )
+            form()
+                md-content(md-theme='docs-dark' style="width:40%" layout='column' layout-sm='column' layout-padding='layout-padding')
+                    md-input-container
+                        label Currency Name
+                        input(ng-model='currency.currency' required='required' name='currency')
+                    md-input-container
+                        label Conversion Rate
+                        input(ng-model='currency.conversionRate' name='conversionRate')
+                    md-input-container
+                        label For Date
+                        md-datepicker(ng-model='currency.forDate' placeholder='Date of the conversion rate' name='forDate')
+                    md-input-container
+                        md-button(type='button' ng-click='saveCurrency()' class='md-raised md-primary' ) Save Currency
+
+
+
+
+
+block append angularscripts
+    script(src='javascripts/AddCtrl.js')

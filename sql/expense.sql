@@ -19,4 +19,4 @@ CREATE TABLE IF NOT EXISTS `expense` (
 --
 -- Indexes for table `currency`
 --
-ALTER TABLE `currency` ADD KEY `name` (`name`);
+ALTER TABLE `expense` ADD KEY `name` (`name`);
