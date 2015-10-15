@@ -19,12 +19,6 @@ myApp.controller('AddCtrl', ['$scope', '$http', function ($scope, $http) {
         },
         function (error) {
             console.error(error);
-
-
-
         });
-
     };
-
-
 }]);
