@@ -1,6 +1,6 @@
 extends layout
 block content
-    p(class='md-title') Add
+    p(class='md-title') Add Currency
     div(flex='flex=40')
         div(ng-controller='AddCtrl' ng-cloak='' )
             form()
@@ -16,10 +16,6 @@ block content
                         md-datepicker(ng-model='currency.forDate' placeholder='Date of the conversion rate' name='forDate')
                     md-input-container
                         md-button(type='button' ng-click='saveCurrency()' class='md-raised md-primary' ) Save Currency
-
-
-
-
 
 block append angularscripts
     script(src='javascripts/AddCtrl.js')
