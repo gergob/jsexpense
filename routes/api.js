@@ -4,6 +4,7 @@
 
 var express = require('express');
 var router = express.Router();
+var q = require('q');
 var currencyManager = require('../managers/currencyManager');
 var memberManager = require('../managers/memberManager');
 var expenseManager = require('../managers/expenseManager');
@@ -81,6 +82,18 @@ router.get('/expenses', function(req, res) {
         .fail(function(err){
             res.status(500).json({error: err.message});
         })
+});
+
+router.get('/stats', function(req, res){
+
+    q.all([expenseManager.getExpenses(), currencyManager.getCurrencies(), memberManager.getMembers()])
+        .spread(function(expenses, currencies, members){
+       res.json({
+           expenses: expenses,
+           currencies: currencies,
+           members: members
+       });
+    });
 });
 
 

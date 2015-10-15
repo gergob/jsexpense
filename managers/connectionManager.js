@@ -5,6 +5,7 @@
 var mysql = require('mysql');
 var q = require('q');
 
+var LOG_PREFIX = '[CONN] - ';
 
 function getConnection() {
     var deferred = q.defer();
@@ -23,6 +24,7 @@ function getConnection() {
             deferred.reject(err);
         }
 
+        console.log(LOG_PREFIX + 'Connection created with id:' + connection.threadId);
         deferred.resolve(connection);
     });
 
